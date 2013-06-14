@@ -45,26 +45,48 @@ proc_close($process);
 echo var_dump($my_array);
 echo var_dump($new_array);
 
-//OUTPUT:
+//DICTCHECK OUTPUT:
+// array(4) {
+//   [0]=>
+//   string(6) "fights"
+//   [1]=>
+//   string(4) "feet"
+//   [2]=>
+//   string(6) "people"
+//   [3]=>
+//   string(8) "notaword"
+// }
+// array(4) {
+//   [0]=>
+//   string(4) "True"
+//   [1]=>
+//   string(4) "True"
+//   [2]=>
+//   string(4) "True"
+//   [3]=>
+//   string(5) "False"
+// }
+
+// DICTSTEM OUTPUT:
 // array(4) {
 // 	[0]=>
-// 	string(3) "Dog"
+// 	string(6) "fights"
 // 	[1]=>
-// 	string(3) "Cat"
+// 	string(4) "feet"
 // 	[2]=>
-// 	string(5) "Horse"
+// 	string(6) "people"
 // 	[3]=>
 // 	string(8) "notaword"
 // }
 // array(4) {
 // 	[0]=>
-// 	string(4) "True"
+// 	string(5) "fight"
 // 	[1]=>
-// 	string(5) " True"
+// 	string(4) "foot"
 // 	[2]=>
-// 	string(5) " True"
+// 	string(6) "people"
 // 	[3]=>
-// 	string(6) " False"
+// 	string(8) "notaword"
 // }
 
 
