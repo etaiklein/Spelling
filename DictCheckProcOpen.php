@@ -2,11 +2,11 @@
 <?php
 
 //sample array
-$my_array = array("Dog", "Cat", "Horse", "notaword");
+$my_array = array("fights", "foot", "people", "notaword");
 
 //it seems to be easier to concatenate the array into a string to pass it to the command
 foreach($my_array as $value)
-  $v = $v . " " . $value;
+	$v = $v . " " . $value;
 	
 $descriptorspec = array(
 		0 => array("pipe", "r"),  // stdin is a pipe that the child will read from
@@ -16,6 +16,7 @@ $descriptorspec = array(
 	
 
 // the path of the python file and the string
+// currently works for DictCheck.py and DictStem.py
 $command = "python /Users/etaiklein/Documents/workspace/plugins/metadatagames/www/protected/modules/plugins/modules/dictionary/components/DictCheck.py $v 2>&1";
 
 //opens the connection between the python and php files
@@ -32,7 +33,7 @@ do 	{$last_line = $line;
 while ($line != "" );
 
 //Turns the string output into an array.
-$new_array = explode(",",substr($last_line, 1, -2));
+$new_array = explode(",",subStr($last_line, 0, -1));
 
 //closing the pipes stops data leaks
 fclose($pipes[1]);
