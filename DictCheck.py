@@ -1,4 +1,5 @@
 #!/usr/bin/python
+#raise Exception("mArray")
 
 import sys
 import os
@@ -12,7 +13,7 @@ import enchant
 def Check(mArray):
 
     #what am I checking?
-    print "\nmy array= ", mArray
+    #print "\nmy array= ", mArray
 
     mylist = []
 
@@ -23,10 +24,10 @@ def Check(mArray):
     #preprocess is the word, post is a boolean-
     i = 0
     while i < len(f):
-        print "\npreprocess= " + f[i]
+        #print "\npreprocess= " + f[i]
         f[i] = str(d.check(f[i])) + ","
         #am I a word?
-        print "postprocess= ", f[i]
+       # print "postprocess= ", f[i]
         i += 1
     
     #slices the string to remove the last character of the last entry
@@ -34,4 +35,17 @@ def Check(mArray):
 
     return ''.join(f)
 
-print Check(sys.argv[1:])    
+#SpellChecks a single item
+def Checkitem(item):
+    item = item[1]
+    d = enchant.Dict("en_US")
+    
+    #preprocess is the word, post is a boolean-
+    #print "\npreprocess= ", item
+    item = str(d.check(item))
+        #am I a word?
+    #print "postprocess= ", item
+
+    return ''.join(item)
+
+print Checkitem(sys.argv)    
