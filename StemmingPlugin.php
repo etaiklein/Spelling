@@ -8,11 +8,13 @@ class StemmingPlugin extends MGWeightingPlugin{
 
 
   function score(&$game, &$game_model, &$tags, $score) {
+    
+    #don't forget to change this!
     $python_file = "/Users/etaiklein/Localhost/tiltWorkspace/plugins/metadatagames/www/protected/modules/plugins/modules/weighting/components/DictStem.py";
     $mytag = "";
     $mytags = array();
-    $TrueWordScore = 0;
-    $FalseWordScore = 10;
+    $OldWordScore = 0;
+    $NewWordScore = 10;
 
       foreach ($game->request->submissions as $submission) {
         foreach ($tags as $image_id => $image_tags) {
@@ -40,15 +42,15 @@ class StemmingPlugin extends MGWeightingPlugin{
 
                #returns 0 if we've seen it before
                case True:
-                 $this->addScore($tags[$image_id][$tag], $TrueWordScore);
-                 $score = $score + $TrueWordScore;
+                 $this->addScore($tags[$image_id][$tag], $OldWordScore);
+                 $score = $score + $OldWordScore;
 
                  break;
 
                #if not, carry on.
                case False:
-                 $this->addScore($tags[$image_id][$tag], $FalseWordScore);
-                 $score = $score + $FalseWordScore;
+                 $this->addScore($tags[$image_id][$tag], $NewWordScore);
+                 $score = $score + $NewWordScore;
                  break;
 
              }
