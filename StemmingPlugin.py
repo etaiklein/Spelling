@@ -3,7 +3,7 @@
 
 #returns 0 if we've seen a similar tag before in this submission set. 
 class StemmingPlugin extends MGWeightingPlugin{
-  public $enableOnInstall = true;
+	public $enableOnInstall = true;
 	public $hasAdmin = true;
 
 
@@ -11,8 +11,9 @@ class StemmingPlugin extends MGWeightingPlugin{
 		$python_file = "/Users/etaiklein/Localhost/tiltWorkspace/plugins/metadatagames/www/protected/modules/plugins/modules/weighting/components/DictStem.py";
 		$mytag = "";
 		$mytags = array();
-		$i = 0;
-
+		$TrueWordScore = 0;
+		$FalseWordScore = 10;
+		
 		foreach ($game->request->submissions as $submission) {
 			foreach ($tags as $image_id => $image_tags) {
 				foreach ($image_tags as $tag => $tag_info) {
@@ -35,13 +36,16 @@ class StemmingPlugin extends MGWeightingPlugin{
 
 						#returns 0 if we've seen it before
 						case True:
-						return 0;
+						$this->addScore($tags[$image_id][$tag], $TrueWordScore);
+						$score = $score + $TrueWordScore;
+								
 					break;
 
 					#if not, carry on.
 						case False:
-						#return 10;
-					break;
+						$this->addScore($tags[$image_id][$tag], $FalseWordScore);
+						$score = $score + $FalseWordScore;
+						break;
 					
 					}
 						
