@@ -12,7 +12,7 @@ from nltk import WordNetLemmatizer
 #gets the part of speech of the word
 def get_wordnet_pos(treebank_tag):
 
-  if treebank_tag.startswith('J')
+  if treebank_tag.startswith('J'):
     return wordnet.ADJ
   elif treebank_tag.startswith('V'):
     return wordnet.VERB
